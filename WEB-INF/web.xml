@@ -1,0 +1,43 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+  version="3.1"
+  metadata-complete="true">
+	
+  <display-name>FsSpy</display-name>
+<security-constraint>
+  <display-name>Ferry's Apps</display-name>
+  <web-resource-collection>
+     <web-resource-name>Protected Area</web-resource-name>
+     <url-pattern>/*</url-pattern>
+  </web-resource-collection>
+  <auth-constraint/>
+</security-constraint>
+
+<security-constraint>
+  <display-name>Ferry's Apps</display-name>
+  <web-resource-collection>
+     <web-resource-name>Protected Area</web-resource-name>
+     <url-pattern>/peek.jsp</url-pattern>
+  </web-resource-collection>
+  <auth-constraint>
+     <role-name>manager-gui</role-name>
+  </auth-constraint>
+</security-constraint>
+
+<login-config>
+  <auth-method>BASIC</auth-method>
+  <realm-name>Masukkan password</realm-name>
+</login-config>
+
+<session-config>
+        <session-timeout>1</session-timeout>
+    </session-config>
+
+  <error-page>
+    <error-code>403</error-code>
+    <location>/WEB-INF/404.jsp</location>
+  </error-page>
+  
+</web-app>
