@@ -1,6 +1,7 @@
 <%--
   ~ Copyright (c) 2018 by MR Ferry
   3.1 simplify some codes
+    3.2 fix total files only
  --%>
 
 <%@ page import="java.io.*,java.util.*,java.lang.*" %>
@@ -28,8 +29,12 @@
         File[] files = folder.listFiles();
         if(files!=null){
         	double total=files.length;
-        	int pages=(int)Math.ceil(total/(double)limit);
-			
+        	int filesOnly=0;
+			for(File file : files){
+				if(file.isFile()) filesOnly++;
+			}
+        	int pages=(int)Math.ceil(filesOnly/(double)limit);
+
             Arrays.sort(files,
 				new Comparator<File>(){
 					public int compare(File f1, File f2)
@@ -73,7 +78,7 @@
 			fileReader.close();
 			double total=content.size();
 			int pages=(int)Math.ceil(total/(double)limit);
-			
+
 			for(int a=mulai;a<(akhir>total?total:akhir);a++){
 				out.println(content.get(a));
 			}
